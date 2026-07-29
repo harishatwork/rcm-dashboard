@@ -111,18 +111,21 @@ function RouteRoleGuard({ children }: { children: ReactNode }) {
 
 function Brand({ collapsed }: { collapsed?: boolean }) {
   return (
-    <div className={cn("flex items-center gap-3 py-6", collapsed ? "justify-center px-2" : "px-6")}>
+    <div className={cn("flex items-center gap-3 py-4", collapsed ? "justify-center px-2" : "px-4")}>
       <img
         src="/app-icon.png"
         alt="RCM Analytics"
-        className="h-[52px] w-[52px] shrink-0 object-contain drop-shadow-md"
+        className="h-11 w-11 shrink-0 object-contain"
       />
       {!collapsed && (
         <div className="min-w-0">
-          <p className="truncate font-display text-base font-extrabold tracking-tight">
-            RCM Analytics
+          <p className="truncate text-base tracking-tight">
+            <span className="font-black text-foreground">RCM</span>
+            <span className="font-medium text-muted-foreground"> Analytics</span>
           </p>
-          <p className="truncate text-xs text-muted-foreground">Revenue cycle intelligence</p>
+          <p className="text-[9px] font-semibold tracking-widest text-slate-400 dark:text-slate-400 uppercase">
+            Predict · Reconcile · Maximize
+          </p>
         </div>
       )}
     </div>
@@ -165,102 +168,102 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <TooltipProvider delayDuration={200}>
-    <GlobalFilterProvider>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
-      <div
-        className={cn(
-          "min-h-dvh lg:grid",
-          collapsed ? "lg:grid-cols-[80px_minmax(0,1fr)]" : "lg:grid-cols-[276px_minmax(0,1fr)]",
-        )}
-      >
-        <aside
-          aria-label="Primary navigation"
-          className="sticky top-0 z-40 hidden h-dvh flex-col border-r border-sidebar-border bg-sidebar transition-all duration-300 lg:flex"
-        >
-          <Brand collapsed={collapsed} />
-          <NavList collapsed={collapsed} />
-
-          {!collapsed && (
-            <div className="mt-auto m-4 space-y-3">
-              <div className="rounded-2xl bg-primary-soft p-4">
-                <p className="text-sm font-semibold text-accent-foreground">Q3 close in 12 days</p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  8 payer reconciliations still open across 3 facilities.
-                </p>
-              </div>
-              <RoleSwitcher />
-            </div>
+      <GlobalFilterProvider>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <div
+          className={cn(
+            "min-h-dvh lg:grid",
+            collapsed ? "lg:grid-cols-[80px_minmax(0,1fr)]" : "lg:grid-cols-[276px_minmax(0,1fr)]",
           )}
+        >
+          <aside
+            aria-label="Primary navigation"
+            className="sticky top-0 z-40 hidden h-dvh flex-col border-r border-sidebar-border bg-sidebar transition-all duration-300 lg:flex"
+          >
+            <Brand collapsed={collapsed} />
+            <NavList collapsed={collapsed} />
 
-          <div className={cn("border-t border-sidebar-border p-3", collapsed && "mt-auto")}>
-            <Button
-              variant="ghost"
-              onClick={toggleCollapsed}
-              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              className={cn(
-                "w-full rounded-xl text-muted-foreground",
-                collapsed ? "justify-center px-0" : "justify-start gap-3 px-3",
-              )}
-            >
-              {collapsed ? (
-                <ChevronsRight className="h-[18px] w-[18px]" />
-              ) : (
-                <>
-                  <ChevronsLeft className="h-[18px] w-[18px]" />
-                  <span className="text-sm font-medium">Collapse</span>
-                </>
-              )}
-            </Button>
-          </div>
-        </aside>
-
-        <div className="flex min-w-0 flex-col">
-          <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
-            <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto]">
-              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-xl lg:hidden"
-                    aria-label="Open navigation"
-                  >
-                    <Menu className="h-5 w-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[276px] overflow-y-auto bg-sidebar p-0">
-                  <Brand />
-                  <NavList onNavigate={() => setMobileOpen(false)} />
-                  <div className="p-3">
-                    <RoleSwitcher />
-                  </div>
-                </SheetContent>
-              </Sheet>
-
-              <SearchBox className="lg:max-w-sm" />
-
-              <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-                <ThemeToggle />
-                <NotificationPanel />
-                <ProfileMenu />
+            {!collapsed && (
+              <div className="mt-auto m-4 space-y-3">
+                <div className="rounded-2xl bg-primary-soft p-4">
+                  <p className="text-sm font-semibold text-accent-foreground">Q3 close in 12 days</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    8 payer reconciliations still open across 3 facilities.
+                  </p>
+                </div>
+                <RoleSwitcher />
               </div>
+            )}
+
+            <div className={cn("border-t border-sidebar-border p-3", collapsed && "mt-auto")}>
+              <Button
+                variant="ghost"
+                onClick={toggleCollapsed}
+                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                className={cn(
+                  "w-full rounded-xl text-muted-foreground",
+                  collapsed ? "justify-center px-0" : "justify-start gap-3 px-3",
+                )}
+              >
+                {collapsed ? (
+                  <ChevronsRight className="h-[18px] w-[18px]" />
+                ) : (
+                  <>
+                    <ChevronsLeft className="h-[18px] w-[18px]" />
+                    <span className="text-sm font-medium">Collapse</span>
+                  </>
+                )}
+              </Button>
             </div>
+          </aside>
 
-            <div className="border-t border-border/70 px-4 py-2 sm:px-6 lg:px-10">
-              <Breadcrumbs />
-            </div>
+          <div className="flex min-w-0 flex-col">
+            <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
+              <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto]">
+                <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+                  <SheetTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-xl lg:hidden"
+                      aria-label="Open navigation"
+                    >
+                      <Menu className="h-5 w-5" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[276px] overflow-y-auto bg-sidebar p-0">
+                    <Brand />
+                    <NavList onNavigate={() => setMobileOpen(false)} />
+                    <div className="p-3">
+                      <RoleSwitcher />
+                    </div>
+                  </SheetContent>
+                </Sheet>
 
-            {showFilters ? <GlobalFilterBar /> : null}
-          </header>
+                <SearchBox className="lg:max-w-sm" />
 
-          <main id="main-content" tabIndex={-1} className="flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
-            <RouteRoleGuard>{children}</RouteRoleGuard>
-          </main>
+                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+                  <ThemeToggle />
+                  <NotificationPanel />
+                  <ProfileMenu />
+                </div>
+              </div>
+
+              <div className="border-t border-border/70 px-4 py-2 sm:px-6 lg:px-10">
+                <Breadcrumbs />
+              </div>
+
+              {showFilters ? <GlobalFilterBar /> : null}
+            </header>
+
+            <main id="main-content" tabIndex={-1} className="flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
+              <RouteRoleGuard>{children}</RouteRoleGuard>
+            </main>
+          </div>
         </div>
-      </div>
-    </GlobalFilterProvider>
+      </GlobalFilterProvider>
     </TooltipProvider>
   );
 }

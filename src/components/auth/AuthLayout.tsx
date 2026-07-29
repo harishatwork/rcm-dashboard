@@ -34,14 +34,29 @@ export function AuthLayout({ title, description, children, footer, eyebrow }: Au
           <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-foreground/15">
             <Activity className="h-5 w-5" aria-hidden />
           </span>
-          <span className="text-base font-semibold tracking-tight">RCM Analytics</span>
+          <span className="text-base tracking-tight">
+            <span className="font-bold">RCM</span>
+            <span className="font-light opacity-90"> Analytics</span>
+          </span>
         </Link>
 
         <div className="relative max-w-md space-y-6">
-          <h2 className="text-3xl font-semibold leading-tight tracking-tight text-primary-foreground">
-            Revenue cycle intelligence for healthcare finance teams
-          </h2>
-          <p className="text-sm leading-relaxed text-primary-foreground/80">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 flex-wrap">
+              {["Predict", "Reconcile", "Maximize"].map((word) => (
+                <span
+                  key={word}
+                  className="rounded-full border border-primary-foreground/25 px-3 py-0.5 text-xs font-medium uppercase tracking-widest text-primary-foreground/70"
+                >
+                  {word}
+                </span>
+              ))}
+            </div>
+            <h2 className="text-3xl font-semibold leading-tight tracking-tight text-primary-foreground">
+              For healthcare finance teams
+            </h2>
+          </div>
+          <p className="text-sm leading-relaxed text-primary-foreground/75">
             Monitor collections, denials and payer performance across every practice from a single
             governed workspace.
           </p>
@@ -70,7 +85,10 @@ export function AuthLayout({ title, description, children, footer, eyebrow }: Au
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground">
               <Activity className="h-5 w-5" aria-hidden />
             </span>
-            <span className="text-base font-semibold tracking-tight">RCM Analytics</span>
+            <span className="text-base tracking-tight">
+              <span className="font-bold">RCM</span>
+              <span className="font-light text-muted-foreground"> Analytics</span>
+            </span>
           </Link>
 
           <div className="rounded-2xl border border-border bg-card p-6 shadow-e2 sm:p-8">
