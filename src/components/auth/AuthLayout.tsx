@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Activity, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 export interface AuthLayoutProps {
   title: string;
@@ -31,9 +31,7 @@ export function AuthLayout({ title, description, children, footer, eyebrow }: Au
           className="pointer-events-none absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-primary-foreground/10 blur-3xl"
         />
         <Link to="/" className="relative flex items-center gap-3 rounded-xl">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-foreground/15">
-            <Activity className="h-5 w-5" aria-hidden />
-          </span>
+          <img src="/app-icon.png" alt="RCM Analytics" className="h-11 w-11 shrink-0 object-contain" />
           <span className="text-base tracking-tight">
             <span className="font-bold">RCM</span>
             <span className="font-light opacity-90"> Analytics</span>
@@ -82,9 +80,7 @@ export function AuthLayout({ title, description, children, footer, eyebrow }: Au
       <main className="flex items-center justify-center px-4 py-10 sm:px-8">
         <div className="w-full max-w-md space-y-8">
           <Link to="/" className="flex items-center gap-3 lg:hidden">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground">
-              <Activity className="h-5 w-5" aria-hidden />
-            </span>
+            <img src="/app-icon.png" alt="RCM Analytics" className="h-10 w-10 shrink-0 object-contain" />
             <span className="text-base tracking-tight">
               <span className="font-bold">RCM</span>
               <span className="font-light text-muted-foreground"> Analytics</span>
